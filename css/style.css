@@ -1,0 +1,1052 @@
+/* --- 1. 基本設定（温かみと清潔感） --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    color: #444;
+    background-image: radial-gradient(#d1bfa7 0.3px, transparent 0.3px);
+    background-size: 30px 30px;
+    background-color: #F9FAF7; 
+    line-height: 1.8;
+}
+
+/* --- 2. ヘッダー（すりガラス風） --- */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* --- ロゴの設定（重なっていた部分を統合） --- */
+.header-logo {
+    font-size: 1.5rem; /* 大きめを優先 */
+    font-weight: bold;
+    color: #6B8E23; /* オリーブ色を優先 */
+    letter-spacing: 1px;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.header-logo:hover {
+    transform: rotate(-5deg);
+    color: #7da629;
+}
+
+/* --- ナビゲーションの設定 --- */
+.header-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.header-nav a {
+    text-decoration: none;
+    color: #444; /* 柔らかい黒を優先 */
+    font-size: 0.9rem;
+    font-weight: bold; /* 「ボールドにしたい」という意図を優先 */
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* --- ホバー演出（下線がスッと出る） --- */
+.header-nav a:not(.nav-contact):hover {
+    color: #6B8E23;
+}
+
+.header-nav a:not(.nav-contact)::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #d1bfa7;
+    transition: width 0.3s ease;
+}
+
+.header-nav a:not(.nav-contact):hover::after {
+    width: 100%;
+}
+
+/* PCではハンバーガーは絶対隠す（でも見た目の設定はここに溜めておく） */
+.hamburger {
+    display: none; /* ←ここでPCでは隠している */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 1000; /* 一番手前に */
+    position: relative;
+}
+
+.hamburger span {
+    width: 100%;
+    height: 2px;
+    background-color: #6B8E23;
+    transition: all 0.3s;
+}
+
+/* --- ロゴの設定（1.4remの方を優先、傾く動きを維持） --- */
+.header-logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #6B8E23;
+    letter-spacing: 1px;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.header-logo:hover {
+    transform: rotate(-5deg);
+    color: #7da629;
+}
+
+/* --- ナビゲーションのレイアウト --- */
+.header-nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- メニューの文字設定（太さとサイズを確定させる） --- */
+.header-nav a {
+    text-decoration: none;
+    color: #444;       /* 柔らかい黒 */
+    font-size: 0.9rem; /* 少し大きめ */
+    font-weight: bold; /* 500より、下の記述にあったboldを優先しました */
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* --- ホバー：下線が出るアニメ（通常メニュー用） --- */
+.header-nav a:not(.nav-contact):hover {
+    color: #6B8E23;
+}
+
+.header-nav a:not(.nav-contact)::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #d1bfa7;
+    transition: width 0.3s ease;
+}
+
+.header-nav a:not(.nav-contact):hover::after {
+    width: 100%;
+}
+
+/* --- 「お問い合わせ」ボタン（特注デザイン） --- */
+.nav-contact {
+    background-color: #6B8E23;
+    color: #fff !important;
+    padding: 10px 20px;
+    border-radius: 25px;
+    box-shadow: 0 4px 10px rgba(107, 142, 35, 0.2);
+}
+
+.nav-contact:hover {
+    background-color: #7da629;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(107, 142, 35, 0.3);
+}
+
+/* --- 3. ヒーロー（圧倒的開放感） --- */
+
+/* 1. 背景画像の設定：疑似要素を使って「背景だけ」をぼかす */
+.hero-with-bg {
+    position: relative;
+    height: 60vh !important;
+    background-image: url('../images/hero_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-with-bg::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: inherit; /* 親の背景画像を引き継ぐ */
+    background-size: cover;
+    background-position: center;
+    filter: blur(4px); /* 背景だけをぼかす */
+    z-index: 0;
+}
+
+/* 2. 文字を包む「箱」：重なっていた設定を統合 */
+.hero-text {
+    width: 100% !important; 
+    max-width: 100vw !important; /* はみ出し防止のため全幅を許可 */
+    text-align: center !important;
+    z-index: 10 !important;
+    position: relative !important;
+}
+
+/* 3. 中の「h1」全体の調整 */
+.hero-text h1 {
+    margin: 0;
+    color: #2c3e50 !important;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8) !important;
+}
+
+/* ヒーロー文字サイズ：PCでの上品な大迫力版 */
+.hero-text h1 {
+    font-size: 3.8rem !important; 
+    font-weight: 800 !important;
+    line-height: 1.4 !important;
+    color: #2c3e50 !important;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8) !important;
+}
+
+/* 1行目：絶対に一行で表示させる呪文を統合 */
+.main-copy {
+    display: block;
+    width: 100%; 
+    font-size: 3.8rem !important; 
+    font-weight: 800 !important;
+    line-height: 1.3 !important;
+    letter-spacing: 0.02em !important;
+    margin-bottom: 10px;
+    white-space: nowrap !important; /* 一行表示を死守 */
+}
+
+/* 2行目：補足サイズ */
+.sub-copy {
+    display: block;
+    font-size: 1.8rem !important;
+    font-weight: 500 !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0.05em !important;
+    color: #556677 !important;
+}
+
+/* --- 4. MISSION & VISION --- */
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+.mv-section {
+    padding: 100px 5%;
+    background-color: #fffaf5; 
+}
+
+/* 2つを包む器 */
+.mv-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    max-width: 800px !important;
+    margin: 0 auto !important;
+    gap: 0 !important; 
+}
+
+/* MISSIONとVISION、共通の見た目（カード風） */
+.mv-box {
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: center !important;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 60px 40px !important;
+    border-radius: 30px;
+    border: none !important; 
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+    transition: all 0.4s ease;
+    box-sizing: border-box !important;
+}
+
+/* MISSION（上の箱）：境界線と余白の特別設定 */
+#mission {
+    border-bottom: 2px solid #6B8E23 !important; 
+    margin-bottom: 80px !important; 
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* MISSIONの箱：角丸を優しく復活させ、囲み線を消す */
+#mission {
+    border: none !important;
+    border-radius: 30px !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* 執念の区切り線設定 */
+.mv-separator {
+    width: 100% !important;
+    max-width: 600px !important;
+    height: 2px !important;
+    background-color: #6B8E23 !important;
+    margin: 40px auto !important;
+}
+
+/* ホバー演出：浮き上がる動き */
+.mv-box:hover {
+    transform: translateY(-10px);
+    background: #ffffff;
+    box-shadow: 0 20px 50px rgba(107, 142, 35, 0.1);
+}
+
+/* --- テキスト装飾 --- */
+.mv-sub {
+    color: #6B8E23;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.mv-box h2 {
+    font-size: 1.6rem;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.mv-box p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 2.0;
+}
+
+/* --- 5. 中間画像（クッション） --- */
+
+.wide-image-wrapper {
+    width: 100%;
+    height: 500px;
+    margin: 80px 0;
+    overflow: hidden; /* 拡大した時のはみ出し防止 */
+}
+
+.wide-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 縦横比を保って中央で切り取り */
+    object-position: center; /* 中央を基準に配置 */
+    
+    /* 質感の調整：温かみ（セピア）と明るさをプラス */
+    filter: sepia(15%) brightness(105%);
+    
+    /* ゆっくりとズームさせるための設定 */
+    transition: transform 1.5s ease;
+}
+
+/* ホバーでゆっくりとズームイン */
+.wide-image-wrapper:hover img {
+    transform: scale(1.05);
+}
+
+/* --- ギャラリー：おしゃれ＆ホバー復活 --- */
+.gallery-container {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important; /* 重複してたのを合流 */
+    gap: 20px !important;
+    max-width: 1000px !important;
+    margin: 40px auto !important;
+}
+
+.gallery-item {
+    flex: 1 !important;
+    height: 250px !important;
+    border-radius: 20px !important; 
+    overflow: hidden !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.6s ease !important;
+}
+
+.gallery-item img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    opacity: 0.6 !important; 
+    filter: grayscale(30%) brightness(1.1) !important; 
+    transition: all 0.6s ease !important;
+}
+
+/* ホバー時の動き */
+.gallery-item:hover {
+    transform: translateY(-12px) !important;
+}
+
+.gallery-item:hover img {
+    opacity: 1 !important;
+    filter: grayscale(0%) brightness(1) !important;
+    transform: scale(1.05) !important;
+}
+
+/* --- 6. 事業内容：フローティング・グラフィック版 --- */
+
+.services-inner {
+    padding: 120px 5%;
+    position: relative;
+    overflow: hidden;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 背景にうっすら流れる巨大文字（OUR SERVICES） */
+.services-inner::before {
+    content: "OUR SERVICES / OUR SERVICES";
+    position: absolute;
+    top: 50px;
+    left: 0;
+    font-size: 10rem;
+    font-weight: 900;
+    color: #6B8E23;
+    opacity: 0.03;
+    white-space: nowrap;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.service-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 80px; 
+    position: relative;
+    z-index: 1;
+}
+
+/* カード間の隠し味：コネクトライン */
+.service-cards::after {
+    content: "";
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    width: 1px;
+    height: 80%;
+    background: linear-gradient(to bottom, 
+        transparent, 
+        rgba(107, 142, 35, 0.1) 20%, 
+        rgba(107, 142, 35, 0.1) 80%, 
+        transparent);
+    z-index: -1;
+}
+
+/* カードの基本設定 */
+.service-card {
+    display: flex;
+    flex-direction: column;
+    width: 45%; 
+    padding: 50px 40px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
+    border-radius: 50px 0 50px 0; /* 非対称な角丸 */
+    border: 1px solid rgba(209, 191, 167, 0.3);
+    position: relative;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* 背後の円形アクセント（120pxを採用して整理） */
+.service-card::after {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: #E8D3C3;
+    border-radius: 50%;
+    opacity: 0.2;
+    z-index: -1;
+    transition: all 0.6s ease;
+}
+
+/* 角のアクセント・ドット */
+.service-card::before {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: #d1bfa7;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+/* 奇数番目：左寄せ */
+.service-card:nth-child(odd) {
+    align-self: flex-start;
+    margin-left: 5%;
+}
+.service-card:nth-child(odd)::after { top: -30px; left: -30px; }
+.service-card:nth-child(odd)::before { bottom: 20px; right: 20px; }
+
+/* 偶数番目：右寄せ（角丸を逆転、円の色を変更） */
+.service-card:nth-child(even) {
+    align-self: flex-end;
+    border-radius: 0 50px 0 50px;
+}
+.service-card:nth-child(even)::after {
+    bottom: -30px;
+    right: -30px;
+    background: #6B8E23;
+}
+.service-card:nth-child(even)::before { bottom: 20px; left: 20px; }
+
+/* アイコンとテキスト */
+.icon {
+    font-size: 55px;
+    color: #6B8E23;
+    margin-bottom: 25px;
+}
+.service-card:nth-child(even) .icon { align-self: flex-end; }
+
+.service-card p {
+    font-size: 0.95rem;
+    line-height: 2.2;
+    color: #777;
+    letter-spacing: 0.02em;
+}
+
+/* ホバー演出（浮き上がり ＋ 円の拡大） */
+.service-card:hover {
+    transform: translateY(-12px);
+    background: #ffffff;
+    box-shadow: 0 30px 60px rgba(107, 142, 35, 0.1);
+}
+.service-card:hover::after {
+    transform: scale(1.3);
+    opacity: 0.15;
+}
+
+/* --- 料金プランセクション --- */
+.plans-section {
+    padding: 120px 5% 150px;
+    background-color: #fffaf5; 
+}
+
+.plans-main-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 60px;
+}
+
+.plans-container {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 20px !important; 
+    max-width: 1200px !important;
+    width: 95% !important; 
+    margin: 0 auto 60px !important;
+}
+
+/* カードの基本 */
+.plan-card {
+    background: #fff;
+    border-radius: 30px;
+    padding: 50px 25px; /* 横パディングを少し削ってスリムに */
+    
+    /* 100% ÷ 3 = 33.3% ですが、隙間の分を考えて 30% に固定します */
+    flex: 0 1 30% !important; 
+    
+    min-width: 280px !important; /* カードが太くなりすぎないように制限 */
+    max-width: 350px !important;
+    
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s ease;
+}
+
+.plan-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 50px rgba(107, 142, 35, 0.15);
+}
+
+/* 真ん中のカードを目立たせる */
+.plan-card.recommended {
+    border: 2px solid #6B8E23;
+    transform: scale(1.05);
+    z-index: 2;
+}
+.plan-card.recommended:hover {
+    transform: scale(1.05) translateY(-15px);
+}
+
+.recommend-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #6B8E23;
+    color: #fff;
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.plan-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #6B8E23;
+    margin-bottom: 20px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.plan-price {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.plan-price span {
+    font-size: 1rem;
+    font-weight: normal;
+    color: #888;
+}
+
+.plan-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 40px;
+    text-align: left;
+    flex-grow: 1; 
+ }
+
+
+.plan-features li {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 0.95rem;
+    color: #666;
+}
+
+.plan-features li::before {
+    content: "✔";
+    color: #6B8E23;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.plan-note {
+    font-size: 0.9rem;
+    color: #888;          
+    margin-bottom: 30px; 
+    font-weight: 500;
+    line-height: 1.5;
+    min-height: 3em;
+}
+
+.plan-card.recommended .plan-note {
+    color: #6B8E23;
+}
+
+.plan-card.recommended .plan-price {
+    color: #6B8E23;
+}
+
+/* カード内のボタン */
+.plan-btn {
+    display: block;
+    padding: 15px 30px;
+    background: #f4f4f4;
+    color: #333;
+    text-decoration: none;
+    border-radius: 100px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.plan-card.recommended .plan-btn {
+    background: #6B8E23;
+    color: #fff;
+}
+
+.plan-btn:hover {
+    filter: brightness(0.9);
+    transform: scale(1.02);
+}
+
+.plan-card.is-coming-soon {
+    opacity: 0.7;
+    pointer-events: none;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 2. カードの中身（名前、価格、特徴、ボタン）だけをぼかす */
+.is-coming-soon .plan-name,
+.is-coming-soon .plan-price,
+.is-coming-soon .plan-note,
+.is-coming-soon .plan-features,
+.is-coming-soon .plan-btn {
+    filter: blur(8px); 
+}
+
+/* 3. COMING SOON の文字（これはぼかさない！） */
+.is-coming-soon::after {
+    content: "COMING SOON";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-10deg);
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #6B8E23;
+    border: 3px solid #6B8E23;
+    padding: 10px 20px;
+    z-index: 20;
+    white-space: nowrap;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+/* --- MISSION & VISION の見出し（緑の文字）を調整 --- */
+.mv-sub {
+    font-size: 1.1rem !important;      /* 0.8remから1.1remへアップ！ */
+    font-weight: 800 !important;       /* より太く、ハッキリと */
+    letter-spacing: 0.3em !important;  /* 文字の間を広げてオシャレに */
+    margin-bottom: 20px !important;    /* 下の大きな見出しとの間隔を調整 */
+    text-transform: uppercase;         /* 小文字で打ってても大文字にする（お好みで） */
+}
+
+/* ついでに、その下の大きな見出し（h2）も少しだけ微調整 */
+.mv-box h2 {
+    font-size: 1.8rem !important;      /* 1.6remから少しだけアップ */
+    font-weight: 800 !important;
+}
+
+/* --- 7. 会社概要 --- */
+
+.company {
+    padding: 120px 5%;
+    background-color: #ffffff; /* 清潔感のある白 */
+    border-radius: 100px 100px 0 0; /* 上側の大きなカーブ */
+    position: relative;
+}
+
+.company-inner {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* セクションタイトル：ドットを添えて */
+.section-title {
+    font-size: 0.9rem;
+    letter-spacing: 0.5em;
+    color: #6B8E23;
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.section-title::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: #d1bfa7;
+    border-radius: 50%;
+}
+
+/* 会社情報のリスト */
+.company-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+}
+
+/* リスト全体の右下に置くアクセント円 */
+.company-list::after {
+    content: "";
+    position: absolute;
+    bottom: -40px;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    background: #E8D3C3;
+    border-radius: 50%;
+    opacity: 0.2;
+}
+
+/* 1行ごとの設定 */
+.company-item {
+    display: flex;
+    align-items: center;
+    padding: 35px 20px;
+    border-bottom: 1px solid rgba(107, 142, 35, 0.1); /* ほんのり緑の線 */
+    transition: background-color 0.4s ease;
+}
+
+.company-item:hover {
+    background-color: #F9FAF7; /* ホバーでふんわり色付け */
+}
+
+/* 項目名（左側） */
+.company-item dt {
+    width: 30%;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #6B8E23;
+    letter-spacing: 0.1em;
+}
+
+/* 内容（右側） */
+.company-item dd {
+    width: 70%;
+    font-size: 1rem;
+    color: #555;
+}
+/* --- 8. お問い合わせ：ふわふわボタン --- */
+
+.contact {
+    padding: 100px 5%;
+    text-align: center;
+    background-color: #F9FAF7;
+}
+
+.contact-text {
+    font-size: 1.1rem;
+    color: #6B8E23;
+    margin-bottom: 40px;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+
+/* ボタンが常に小さく呼吸しているようなアニメーション */
+@keyframes breath {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); } /* 1.02から1.03へ少し強調 */
+    100% { transform: scale(1); }
+}
+
+.fuwafuwa-btn {
+    display: inline-block;
+    position: relative;
+    padding: 25px 60px;
+    background-color: #6B8E23;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    border-radius: 100px;
+    box-shadow: 0 15px 35px rgba(107, 142, 35, 0.2);
+    
+    /* ぷにっと動く魔法のイージング */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    overflow: hidden;
+    z-index: 1;
+    
+    /* 3秒おきに深呼吸 */
+    animation: breath 3s infinite ease-in-out;
+}
+
+/* ホバーした時の動き：アニメーションに負けないように設定 */
+.fuwafuwa-btn:hover {
+    /* ホバー時は呼吸を止めて、マウスの動きに集中させる */
+    animation-play-state: paused; 
+    transform: translateY(-8px) scale(1.1) !important; 
+    box-shadow: 0 25px 50px rgba(107, 142, 35, 0.3);
+    background-color: #7da629;
+}
+
+/* ボタンの中の「光の玉」 */
+.btn-circle {
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    z-index: -1;
+    transition: all 0.6s ease;
+}
+
+/* ホバー時に光の玉が中を駆け抜ける */
+.fuwafuwa-btn:hover .btn-circle {
+    top: -20px;
+    left: 80%;
+    width: 150px;
+    height: 150px;
+}
+
+/* --- 9. フッター（締めくくり） --- */
+
+.footer-simple {
+    background: #6B8E23; /* ブランドカラーのオリーブで統一 */
+    color: white;
+    text-align: center;
+    padding: 60px 0;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+}
+
+.footer-simple p {
+    margin: 0;
+    opacity: 0.8; /* 少しだけ透けさせて上品に */
+}
+
+/* --- 全体共通：すべてのリンクに「滑らかな変化」をプラス --- */
+a {
+    transition: all 0.3s ease;
+}
+
+/* 1. MISSIONの「囲み」を消して、下線だけにする */
+#mission {
+    border: none !important;            /* 四方の囲みを消去 */
+    border-bottom: 3px solid #6B8E23 !important; /* 下だけ太めの緑線を引く */
+    border-radius: 30px 30px 0 0 !important;   /* 下側の角丸をなくすと線が綺麗に見える */
+}
+
+/* ==========================================
+   最終調整：MISSIONの線とギャラリーの復活
+   ========================================== */
+
+/* 今まで邪魔をしていたかもしれない設定を念のためオフ */
+#mission {
+    border-bottom: none !important;
+    margin-bottom: 0 !important;
+}
+
+/* MISSIONの箱の角丸を優しく復活させる */
+#mission {
+    border-radius: 30px !important; /* 四角くなってた角を、元の30pxの丸みに戻す！ */
+}
+
+/* ついでに線の位置を微調整（もし箱に近すぎたらここをいじってね） */
+.mv-separator {
+    margin-top: 40px !important;    /* MISSIONの箱からの距離 */
+    margin-bottom: 40px !important; /* VISIONの箱までの距離 */
+}
+
+
+/* ==========================================
+    【一番最後】スマホ・タブレット用の一括設定
+   ========================================== */
+@media (max-width: 950px) {
+    /* 1. ハンバーガーとメニューの動き */
+    .hamburger { 
+        display: flex; 
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 1100;
+    }
+    
+    .hamburger span {
+        width: 100%;
+        height: 2px;
+        background: #6B8E23;
+        transition: 0.3s;
+    }
+
+    /* ボタンを「X」にするアニメ */
+    .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+    .header-nav {
+        position: fixed; 
+        top: 0; 
+        right: -100%; 
+        width: 70%; 
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.98); 
+        box-shadow: -10px 0 20px rgba(0,0,0,0.1);
+        transition: 0.3s ease-in-out;
+        z-index: 1050;
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+    }
+
+    .header-nav.active { right: 0; }
+    
+    .header-nav ul {
+        flex-direction: column !important;
+        gap: 30px;
+        list-style: none;
+        padding: 0;
+    }
+
+    .header-nav a {
+        font-size: 1.1rem;
+        color: #333;
+    }
+
+    /* 2. ヒーロー文字：スマホで読みやすく（2.2rem） */
+    .hero-text h1 {
+        font-size: 2.2rem !important;
+        line-height: 1.4 !important;
+        padding: 0 20px !important;
+    }
+
+    /* 3. ギャラリー：スマホでは縦1列に */
+    .gallery-container {
+        flex-direction: column !important;
+    }
+    .gallery-item {
+        height: 200px !important;
+    }
+
+    /* 4. MISSION：スマホでの配置調整 */
+    .mv-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .mv-sub {
+        font-size: 0.9rem !important;
+        letter-spacing: 0.2em !important;
+    }
+
+    /* 5. 料金プラン：スマホでは縦に並べる */
+    .plans-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .plan-card {
+        width: 100%;
+        max-width: 400px;
+    }
+    .plan-card.recommended {
+        transform: scale(1);
+        margin: 30px 0;
+    }
+
+    /* 6. 会社概要：スマホでは項目を縦に */
+    .company-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

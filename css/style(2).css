@@ -1,0 +1,227 @@
+@charset "UTF-8";
+
+/* --- 1. メインページから引き継ぐ共通デザイン（これがないとボタン等が出ません） --- */
+.fuwafuwa-btn {
+    display: inline-block;
+    position: relative;
+    padding: 20px 60px;
+    background-color: #6B8E23; /* オリーブ色 */
+    color: #ffffff !important; /* 文字を白に固定 */
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 100px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    z-index: 1;
+    border: none;
+    cursor: pointer;
+}
+
+.fuwafuwa-btn span {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-circle {
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    z-index: 1;
+    transition: all 0.6s ease;
+}
+
+.fuwafuwa-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    background-color: #7da629;
+}
+
+/* --- 2. お問い合わせページ全体のレイアウト --- */
+body {
+    background-color: #F9FAF7; /* ベージュ背景 */
+    color: #333; /* 文字色を濃いグレーにして確実に表示 */
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.form-wrapper {
+    max-width: 800px;
+    margin: 80px auto;
+    padding: 60px 40px;
+    background: #ffffff; /* フォームの土台を白に */
+    border-radius: 60px 0 60px 0;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(209, 191, 167, 0.3);
+}
+
+.form-page-title {
+    font-size: 1.5rem;
+    letter-spacing: 0.3em;
+    color: #6B8E23;
+    text-align: center;
+    margin-bottom: 10px;
+    display: block; /* 確実に出す */
+}
+
+.form-intro {
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 50px;
+    line-height: 1.8;
+}
+
+/* --- 3. テーブル（入力項目）の装飾 --- */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.custom-table tr {
+    border-bottom: 1px solid #eee;
+}
+
+.custom-table th {
+    width: 30%;
+    padding: 25px 10px;
+    color: #6B8E23;
+    font-weight: bold;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.custom-table td {
+    padding: 20px 10px;
+}
+
+/* 入力欄 --- */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+    width: 100%;
+    box-sizing: border-box; /* 幅がはみ出さないように */
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fdfdfd;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s;
+}
+
+input:focus, textarea:focus {
+    border-color: #d1bfa7;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(209, 191, 167, 0.2);
+}
+
+.required sup {
+    color: #d1bfa7;
+    font-size: 1.2rem;
+    margin-left: 3px;
+}
+
+.form-submit-area {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* エラー時の入力欄の揺れ（おまけの可愛い演出） */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+input:invalid:focus {
+    /* ブラウザ標準の赤枠を消してデザインを統一 */
+    outline: none;
+    box-shadow: 0 0 5px rgba(230, 126, 34, 0.3);
+}
+
+/* 戻るボタンのエリア */
+.back-to-home {
+    margin-bottom: 40px;
+    display: inline-block;
+}
+
+/* 戻るリンク本体 */
+.back-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #6B8E23; /* メインのオリーブ色 */
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 5px 0;
+}
+
+/* 矢印（←）の部分 */
+.back-link .arrow {
+    margin-right: 8px;
+    transition: transform 0.3s ease;
+}
+
+/* ホバーした（マウスを乗せた）時の動き */
+.back-link:hover {
+    color: #7da629; /* 少し明るい緑に */
+}
+
+.back-link:hover .arrow {
+    transform: translateX(-5px); /* 矢印が左にピョコッと動く */
+}
+
+/* 下線のオシャレなアニメーション */
+.back-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #d1bfa7; /* エラー時と同じ優しいベージュ */
+    transition: width 0.3s ease;
+}
+
+.back-link:hover::after {
+    width: 100%; /* ホバーすると下線がスッと伸びる */
+}
+
+/* 矢印を「記号」から「デザイン」に変更 */
+.back-link .arrow {
+    position: relative;
+    width: 20px;  /* 矢印の長さ */
+    height: 1px;  /* 矢印の棒の太さ（細いのがオシャレ！） */
+    background-color: currentColor; /* 文字と同じ色にする */
+    margin-right: 12px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+/* 矢印の「く」の字の部分を作る */
+.back-link .arrow::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -4px;
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid currentColor;
+    border-left: 1px solid currentColor;
+    transform: rotate(-45deg); /* 斜めにして「く」にする */
+}
+
+/* ホバーした時にピョコッと動く設定 */
+.back-link:hover .arrow {
+    transform: translateX(-8px); /* 少し大きく動かすと可愛い */
+}
